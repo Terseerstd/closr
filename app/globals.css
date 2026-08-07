@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --background: #23062b;
+  --foreground: #fcd6ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  --color-brand-pink: #ff066d;
+  --color-brand-pink-dim: #ffb2bf;
+  --color-brand-purple: #ae16a7;
+  --color-brand-orange: #fa5f04;
+  
+  /* Neutral scale based on DESIGN.md */
+  --color-brand-dark: #23062b;
+  --color-brand-lowest: #1d0225;
+  --color-brand-low: #2c0f33;
+  --color-brand-card: #311338;
+  --color-brand-high: #3c1e43;
+  --color-brand-highest: #48294e;
+  
+  --color-brand-lilac: #e6bcc2;
+}
+
+body {
+  background-color: #23062b;
+  color: #fcd6ff;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1d0225;
+}
+::-webkit-scrollbar-thumb {
+  background: #311338;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff066d;
+}
+
+/* Accent lighting effects */
+.glow-bg {
+  position: relative;
+}
+.glow-bg::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 6, 109, 0.15) 0%, rgba(174, 22, 167, 0.05) 50%, transparent 100%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hover Shake Animation */
+@keyframes hover-shake {
+  0% { transform: rotate(-1deg) scale(1.03); }
+  15% { transform: rotate(1.5deg) scale(1.03); }
+  30% { transform: rotate(-2.5deg) scale(1.03); }
+  45% { transform: rotate(2deg) scale(1.03); }
+  60% { transform: rotate(-1.5deg) scale(1.03); }
+  75% { transform: rotate(1deg) scale(1.03); }
+  90% { transform: rotate(-2deg) scale(1.03); }
+  100% { transform: rotate(-1deg) scale(1.03); }
+}
+
+.hover-shake {
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hover-shake:hover {
+  animation: hover-shake 0.45s ease-in-out infinite;
+}
