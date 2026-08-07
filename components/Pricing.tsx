@@ -62,7 +62,7 @@ export default function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="relative py-24 md:py-32 bg-brand-dark">
+    <section id="pricing" className="relative py-24 md:py-32 bg-brand-dark overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[450px] h-[450px] rounded-full bg-radial from-brand-pink/10 to-transparent blur-[100px] pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-8 relative z-10">

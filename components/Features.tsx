@@ -11,7 +11,7 @@ import {
 
 export default function Features() {
   return (
-    <section id="features" className="relative py-24 md:py-32 bg-brand-dark">
+    <section id="features" className="relative py-24 md:py-32 bg-brand-dark overflow-hidden">
       <div className="absolute top-1/3 right-1/4 -translate-x-1/2 w-[400px] h-[400px] rounded-full bg-radial from-brand-pink/5 to-transparent blur-[90px] pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-8 relative z-10">
@@ -28,7 +28,7 @@ export default function Features() {
         {/* Bento Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1: e-Offer Builder (2/3 width) */}
-          <div className="col-span-1 md:col-span-2 rounded-2xl border border-white/5 bg-brand-card/30 p-8 flex flex-col md:flex-row justify-between gap-6 overflow-hidden transition-all duration-300 hover:border-brand-pink/20 hover:shadow-[0_8px_30px_rgba(255,0,123,0.05)]">
+          <div className="col-span-1 md:col-span-2 rounded-2xl border border-white/5 bg-brand-card/30 p-6 md:p-8 flex flex-col md:flex-row justify-between gap-6 overflow-hidden transition-all duration-300 hover:border-brand-pink/20 hover:shadow-[0_8px_30px_rgba(255,6,109,0.05)]">
             <div className="flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-pink/10 text-brand-pink mb-6">
@@ -52,7 +52,7 @@ export default function Features() {
             </div>
             
             {/* Visual Widget Mockup */}
-            <div className="flex-1 bg-brand-lowest rounded-xl border border-white/5 p-4 flex flex-col gap-3 min-w-[240px]">
+            <div className="flex-1 bg-brand-lowest rounded-xl border border-white/5 p-4 flex flex-col gap-3 w-full md:min-w-[240px]">
               <span className="text-[10px] uppercase font-bold tracking-wider text-white/40">Custom Deliverable</span>
               <div className="p-3 rounded-lg bg-brand-card border border-white/5">
                 <div className="flex justify-between items-center mb-1">
@@ -69,7 +69,7 @@ export default function Features() {
           </div>
 
           {/* Card 2: Signed Contracts (1/3 width) */}
-          <div className="col-span-1 rounded-2xl border border-white/5 bg-brand-card/30 p-8 flex flex-col justify-between transition-all duration-300 hover:border-brand-pink/20 hover:shadow-[0_8px_30px_rgba(255,0,123,0.05)]">
+          <div className="col-span-1 rounded-2xl border border-white/5 bg-brand-card/30 p-6 md:p-8 flex flex-col justify-between transition-all duration-300 hover:border-brand-pink/20 hover:shadow-[0_8px_30px_rgba(255,6,109,0.05)]">
             <div>
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-pink/10 text-brand-pink mb-6">
                 <FileCheck className="h-5 w-5" />
@@ -98,7 +98,7 @@ export default function Features() {
           </div>
 
           {/* Card 3: AI Sales Copilot (1/3 width) */}
-          <div className="col-span-1 rounded-2xl border border-white/5 bg-brand-card/30 p-8 flex flex-col justify-between transition-all duration-300 hover:border-brand-pink/20 hover:shadow-[0_8px_30px_rgba(255,0,123,0.05)]">
+          <div className="col-span-1 rounded-2xl border border-white/5 bg-brand-card/30 p-6 md:p-8 flex flex-col justify-between transition-all duration-300 hover:border-brand-pink/20 hover:shadow-[0_8px_30px_rgba(255,6,109,0.05)]">
             <div>
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-pink/10 text-brand-pink mb-6">
                 <Sparkles className="h-5 w-5" />
@@ -126,7 +126,7 @@ export default function Features() {
           </div>
 
           {/* Card 4: Smart Objection Handling (2/3 width) */}
-          <div className="col-span-1 md:col-span-2 rounded-2xl border border-white/5 bg-brand-card/30 p-8 flex flex-col md:flex-row justify-between gap-6 overflow-hidden transition-all duration-300 hover:border-brand-pink/20 hover:shadow-[0_8px_30px_rgba(255,0,123,0.05)]">
+          <div className="col-span-1 md:col-span-2 rounded-2xl border border-white/5 bg-brand-card/30 p-6 md:p-8 flex flex-col md:flex-row justify-between gap-6 overflow-hidden transition-all duration-300 hover:border-brand-pink/20 hover:shadow-[0_8px_30px_rgba(255,6,109,0.05)]">
             <div className="flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-pink/10 text-brand-pink mb-6">
@@ -150,7 +150,7 @@ export default function Features() {
             </div>
 
             {/* Visual Widget Mockup */}
-            <div className="flex-1 bg-brand-lowest rounded-xl border border-white/5 p-4 flex flex-col gap-2 min-w-[240px] text-[10px]">
+            <div className="flex-1 bg-brand-lowest rounded-xl border border-white/5 p-4 flex flex-col gap-2 w-full md:min-w-[240px] text-[10px]">
               <span className="font-bold text-white/50 block mb-1">Objection: "Budget Constraints"</span>
               <div className="space-y-1.5">
                 <div className="p-2 rounded bg-white/5 flex items-center justify-between cursor-pointer hover:bg-white/10 transition-colors">
@@ -173,7 +173,7 @@ export default function Features() {
         {/* Bottom row specifically to fit col-span-2 and col-span-1 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
           {/* Card 5: Integrated Payments (col-span-2) */}
-          <div className="col-span-1 md:col-span-2 rounded-2xl border border-white/5 bg-brand-card/30 p-8 flex flex-col md:flex-row justify-between gap-6 overflow-hidden transition-all duration-300 hover:border-brand-pink/20 hover:shadow-[0_8px_30px_rgba(255,0,123,0.05)]">
+          <div className="col-span-1 md:col-span-2 rounded-2xl border border-white/5 bg-brand-card/30 p-6 md:p-8 flex flex-col md:flex-row justify-between gap-6 overflow-hidden transition-all duration-300 hover:border-brand-pink/20 hover:shadow-[0_8px_30px_rgba(255,6,109,0.05)]">
             <div className="flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-pink/10 text-brand-pink mb-6">
@@ -197,7 +197,7 @@ export default function Features() {
             </div>
 
             {/* Visual Widget Mockup */}
-            <div className="flex-1 bg-brand-lowest rounded-xl border border-white/5 p-4 flex flex-col gap-3 min-w-[240px] text-xs">
+            <div className="flex-1 bg-brand-lowest rounded-xl border border-white/5 p-4 flex flex-col gap-3 w-full md:min-w-[240px] text-xs">
               <span className="font-bold text-white/50 block">Payment Summary</span>
               <div className="flex justify-between items-center">
                 <span className="text-brand-lilac">Retainer</span>
@@ -215,7 +215,7 @@ export default function Features() {
           </div>
 
           {/* Card 6: One-Click Proposals (col-span-1) */}
-          <div className="col-span-1 rounded-2xl border border-white/5 bg-brand-card/30 p-8 flex flex-col justify-between transition-all duration-300 hover:border-brand-pink/20 hover:shadow-[0_8px_30px_rgba(255,0,123,0.05)]">
+          <div className="col-span-1 rounded-2xl border border-white/5 bg-brand-card/30 p-6 md:p-8 flex flex-col justify-between transition-all duration-300 hover:border-brand-pink/20 hover:shadow-[0_8px_30px_rgba(255,6,109,0.05)]">
             <div>
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-pink/10 text-brand-pink mb-6">
                 <Zap className="h-5 w-5" />

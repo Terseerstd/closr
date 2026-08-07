@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a010d] text-white">
+    <div className="flex flex-col min-h-screen bg-brand-dark text-white">
       {/* Navigation Header */}
       <Header />
 

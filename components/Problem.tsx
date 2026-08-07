@@ -37,7 +37,7 @@ export default function Problem() {
   ];
 
   return (
-    <section className="relative py-24 md:py-32 bg-brand-dark">
+    <section className="relative py-24 md:py-32 bg-brand-dark overflow-hidden">
       <div className="absolute top-1/2 left-1/4 -translate-x-1/2 w-[350px] h-[350px] rounded-full bg-radial from-brand-purple/10 to-transparent blur-[80px] pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-8 relative z-10">

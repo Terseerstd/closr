@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import jwt from "jsonwebtoken";
+import DashboardShell from "@/components/DashboardShell";
 import {
   TrendingUp,
   DollarSign,
@@ -54,133 +55,12 @@ export default async function DashboardPage() {
     .substring(0, 2);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-brand-lowest text-white font-sans">
-      {/* Sidebar Navigation */}
-      <aside className="hidden lg:flex flex-col w-72 bg-[#130219] border-r border-brand-purple/10 p-6 justify-between select-none">
-        <div className="space-y-8">
-          {/* Logo */}
-          <div className="px-2">
-            <Link href="/" className="flex items-center gap-1.5 text-2xl font-bold tracking-tight text-white">
-              <span>Closr</span>
-              <span className="text-brand-pink font-extrabold text-3xl leading-none">.</span>
-            </Link>
-            <span className="text-[9px] text-brand-lilac/40 uppercase tracking-widest font-bold block mt-0.5">
-              REVENUE INTELLIGENCE
-            </span>
-          </div>
-
-          {/* Navigation Links */}
-          <nav className="flex flex-col gap-1.5">
-            <Link
-              href="/dashboard"
-              className="flex items-center gap-3.5 px-4 py-3.5 rounded-xl text-sm font-bold bg-brand-high/50 text-white border-l-3 border-brand-pink transition-all"
-            >
-              <Layers className="h-4.5 w-4.5 text-brand-pink" />
-              <span>Dashboard</span>
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center gap-3.5 px-4 py-3.5 rounded-xl text-sm font-medium text-brand-lilac/70 hover:text-white hover:bg-white/5 transition-all"
-            >
-              <Briefcase className="h-4.5 w-4.5" />
-              <span>Pipeline</span>
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center gap-3.5 px-4 py-3.5 rounded-xl text-sm font-medium text-brand-lilac/70 hover:text-white hover:bg-white/5 transition-all"
-            >
-              <Sparkles className="h-4.5 w-4.5" />
-              <span>AI Insights</span>
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center gap-3.5 px-4 py-3.5 rounded-xl text-sm font-medium text-brand-lilac/70 hover:text-white hover:bg-white/5 transition-all"
-            >
-              <DollarSign className="h-4.5 w-4.5" />
-              <span>Billing</span>
-            </Link>
-          </nav>
-        </div>
-
-        {/* Bottom Options */}
-        <div className="space-y-1.5">
-          <Link
-            href="#"
-            className="flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-medium text-brand-lilac/70 hover:text-white hover:bg-white/5 transition-all"
-          >
-            <Settings className="h-4.5 w-4.5" />
-            <span>Settings</span>
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-medium text-brand-lilac/70 hover:text-white hover:bg-white/5 transition-all"
-          >
-            <HelpCircle className="h-4.5 w-4.5" />
-            <span>Support</span>
-          </Link>
-          <form action={handleLogout} className="pt-2 border-t border-white/5 mt-2">
-            <button
-              type="submit"
-              className="flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-medium text-rose-400 hover:text-rose-300 hover:bg-rose-500/5 transition-all w-full text-left cursor-pointer"
-            >
-              <LogOut className="h-4.5 w-4.5" />
-              <span>Sign Out</span>
-            </button>
-          </form>
-        </div>
-      </aside>
-
-      {/* Main Panel Content */}
-      <div className="flex-1 flex flex-col bg-brand-dark overflow-y-auto">
-        {/* Header Bar */}
-        <header className="px-8 py-5 border-b border-brand-purple/10 bg-brand-dark/40 backdrop-blur-md sticky top-0 z-20 flex flex-col sm:flex-row items-center justify-between gap-4 select-none">
-          <div>
-            <h1 className="text-xl font-bold text-white tracking-tight">Dashboard</h1>
-            <p className="text-[10px] text-brand-lilac/50 block mt-0.5">Welcome back, {username}</p>
-          </div>
-
-          {/* Search bar */}
-          <div className="relative w-full sm:max-w-xs">
-            <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-brand-lilac/40">
-              <Search className="h-4 w-4" />
-            </span>
-            <input
-              type="text"
-              placeholder="Search deals..."
-              className="w-full pl-9 pr-4 py-2 bg-[#130219] border border-brand-purple/10 rounded-full text-xs text-white placeholder-brand-lilac/40 focus:border-brand-pink outline-none transition-all"
-            />
-          </div>
-
-          {/* Header Actions */}
-          <div className="flex items-center gap-4.5">
-            {/* Sparkles / AI badge */}
-            <button className="p-2 border border-white/5 bg-white/2 hover:bg-white/5 text-brand-lilac hover:text-white rounded-full transition-all relative">
-              <Sparkles className="h-4.5 w-4.5" />
-            </button>
-
-            {/* Notification Bell */}
-            <button className="p-2 border border-white/5 bg-white/2 hover:bg-white/5 text-brand-lilac hover:text-white rounded-full transition-all relative">
-              <Bell className="h-4.5 w-4.5" />
-              <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-brand-pink ring-2 ring-brand-dark" />
-            </button>
-
-            {/* User Profile initials */}
-            <div
-              title={username}
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-brand-pink to-brand-purple text-xs font-black text-white shadow-lg cursor-pointer"
-            >
-              {userInitials}
-            </div>
-
-            {/* CTA Button */}
-            <button className="relative inline-flex h-9.5 items-center justify-center rounded-full bg-brand-pink px-5 text-xs font-semibold text-white transition-all hover:bg-opacity-95 hover:scale-[1.02] shadow-[0_0_15px_rgba(255,6,109,0.3)] active:scale-[0.98]">
-              New Deal
-            </button>
-          </div>
-        </header>
-
-        {/* Inner Scrollable Workspace */}
-        <main className="p-8 space-y-8 max-w-7xl mx-auto w-full">
+    <DashboardShell
+      username={username}
+      userInitials={userInitials}
+      onLogout={handleLogout}
+    >
+      <main className="p-6 md:p-8 space-y-8 max-w-7xl mx-auto w-full">
           {/* Row 1: Metrics Row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Metric 1 */}
@@ -428,8 +308,7 @@ export default async function DashboardPage() {
               </div>
             </div>
           </div>
-        </main>
-      </div>
-    </div>
+      </main>
+    </DashboardShell>
   );
 }
