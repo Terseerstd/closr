@@ -168,7 +168,7 @@ function VerifyForm() {
         </div>
 
         {/* Card */}
-        <div className="rounded-2xl border border-brand-purple/20 bg-brand-lowest/60 backdrop-blur-md p-8 sm:p-10 shadow-2xl">
+        <div className="rounded-2xl border border-brand-purple/20 bg-brand-lowest/60 backdrop-blur-md p-6 sm:p-10 shadow-2xl">
           {success ? (
             <div className="text-center py-6 flex flex-col items-center gap-4 animate-in fade-in zoom-in-95 duration-200">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-500/10 text-green-400">
@@ -209,7 +209,7 @@ function VerifyForm() {
               )}
 
               {/* 6 digits input fields */}
-              <div className="flex justify-between items-center gap-2 sm:gap-3 py-2">
+              <div className="flex justify-between items-center gap-1.5 sm:gap-3 py-2">
                 {code.map((num, idx) => (
                   <input
                     key={idx}
@@ -223,7 +223,7 @@ function VerifyForm() {
                     ref={(el) => {
                       inputRefs.current[idx] = el;
                     }}
-                    className="w-12 h-14 text-center bg-brand-low border border-brand-purple/10 text-white focus:border-brand-pink focus:ring-1 focus:ring-brand-pink rounded-xl text-lg font-bold transition-all outline-none"
+                    className="w-9 sm:w-12 h-11 sm:h-14 text-center bg-brand-low border border-brand-purple/10 text-white focus:border-brand-pink focus:ring-1 focus:ring-brand-pink rounded-xl text-sm sm:text-lg font-bold transition-all outline-none"
                   />
                 ))}
               </div>
