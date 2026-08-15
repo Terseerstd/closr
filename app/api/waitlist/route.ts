@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/db";
+import { sendWaitlistConfirmationEmail } from "@/lib/mailer";
 import Waitlist from "@/models/Waitlist";
 
 function isValidEmail(email: string) {
@@ -46,9 +47,11 @@ export async function POST(req: Request) {
       { new: true, upsert: true, setDefaultsOnInsert: true }
     );
 
+    await sendWaitlistConfirmationEmail(entry.email, entry.name);
+
     return NextResponse.json(
       {
-        message: "You're on the waitlist.",
+        message: "You're on the waitlist. Confirmation email sent.",
         email: entry.email,
       },
       { status: 201 }
