@@ -5,24 +5,32 @@ import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
-  BriefcaseBusiness,
   CheckCircle2,
+  ChevronDown,
   Mail,
-  Sparkles,
   User,
 } from "lucide-react";
 
 const benefits = [
-  "Early access to AI deal packaging",
-  "Founding-user onboarding sessions",
-  "Priority invites for team workspaces",
+  {
+    title: "Package deals faster",
+    description: "AI helps turn opportunities into compelling proposals.",
+  },
+  {
+    title: "Keep every deal moving",
+    description: "Never let follow-ups disappear into your inbox.",
+  },
+  {
+    title: "Let AI handle the busywork",
+    description: "Automate repetitive revenue tasks while you stay in control.",
+  },
 ];
 
 export default function WaitlistPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
+  const [customRole, setCustomRole] = useState("");
   const [useCase, setUseCase] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,12 +45,14 @@ export default function WaitlistPage() {
       return;
     }
 
+    const finalRole = role === "Other" ? customRole.trim() : role;
+
     setLoading(true);
     try {
       const response = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, company, role, useCase }),
+        body: JSON.stringify({ name, email, role: finalRole, useCase }),
       });
 
       const data = await response.json();
@@ -87,26 +97,28 @@ export default function WaitlistPage() {
             </Link>
 
             <div className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-brand-pink/20 bg-brand-pink/10 px-3 py-1 text-xs font-semibold text-brand-pink">
-              {/* <Sparkles className="h-3.5 w-3.5" /> */}
               <span>Private beta waitlist</span>
             </div>
 
             <h1 className="max-w-2xl text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Be first in line for faster, cleaner deal flow.
+              Turn more leads into signed deals—with less sales work.
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-8 text-brand-lilac md:text-lg">
-              Join the Closr waitlist for early access to an AI revenue workspace built for agencies, consultants, and service teams who need to move from lead to signed proposal without the usual drag.
+              Closr is the AI revenue workspace for agencies, consultants and service businesses. Qualify leads, build proposals, automate follow-ups and keep every deal moving until it&apos;s closed.
             </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            <div className="mt-8 grid gap-4 sm:grid-cols-3">
               {benefits.map((benefit) => (
                 <div
-                  key={benefit}
-                  className="flex min-h-24 items-start gap-3 rounded-lg border border-white/8 bg-white/5 p-4"
+                  key={benefit.title}
+                  className="flex flex-col gap-2 rounded-xl border border-white/8 bg-white/5 p-4"
                 >
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-pink" />
-                  <p className="text-xs font-medium leading-5 text-brand-lilac">{benefit}</p>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-brand-pink" />
+                    <h3 className="text-xs font-semibold text-white">{benefit.title}</h3>
+                  </div>
+                  <p className="text-xs leading-relaxed text-brand-lilac/80">{benefit.description}</p>
                 </div>
               ))}
             </div>
@@ -133,7 +145,7 @@ export default function WaitlistPage() {
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div>
-                  <h2 className="text-2xl font-bold text-white">Join the waitlist</h2>
+                  <h2 className="text-2xl font-bold text-white">Get Early Access</h2>
                   <p className="mt-2 text-sm text-brand-lilac/75">
                     Tell us where to send your invite.
                   </p>
@@ -175,39 +187,65 @@ export default function WaitlistPage() {
                   </span>
                 </label>
 
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="flex flex-col gap-1.5 text-xs font-semibold text-brand-lilac">
-                    Company
-                    <span className="relative">
-                      <BriefcaseBusiness className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-lilac/50" />
-                      <input
-                        type="text"
-                        value={company}
-                        onChange={(e) => setCompany(e.target.value)}
-                        placeholder="Studio North"
-                        className="w-full rounded-xl border border-brand-purple/10 bg-brand-low py-3 pl-10 pr-4 text-sm text-white outline-none transition-all placeholder:text-brand-lilac/40 focus:border-brand-pink focus:ring-1 focus:ring-brand-pink"
-                      />
-                    </span>
-                  </label>
+                <label className="flex flex-col gap-1.5 text-xs font-semibold text-brand-lilac">
+                  Role
+                  <span className="relative">
+                    <select
+                      value={role}
+                      onChange={(e) => {
+                        setRole(e.target.value);
+                        if (e.target.value !== "Other") {
+                          setCustomRole("");
+                        }
+                      }}
+                      className="w-full appearance-none rounded-xl border border-brand-purple/10 bg-brand-low px-4 py-3 pr-10 text-sm text-white outline-none transition-all focus:border-brand-pink focus:ring-1 focus:ring-brand-pink cursor-pointer"
+                    >
+                      <option value="" disabled className="bg-brand-dark text-brand-lilac">
+                        Select your role...
+                      </option>
+                      <option value="Agency Owner / Founder" className="bg-brand-dark text-white">
+                        Agency Owner / Founder
+                      </option>
+                      <option value="Consultant / Freelancer" className="bg-brand-dark text-white">
+                        Consultant / Freelancer
+                      </option>
+                      <option value="Sales Lead / Director" className="bg-brand-dark text-white">
+                        Sales Lead / Director
+                      </option>
+                      <option value="Account Executive / Manager" className="bg-brand-dark text-white">
+                        Account Executive / Manager
+                      </option>
+                      <option value="Operations / Delivery" className="bg-brand-dark text-white">
+                        Operations / Delivery
+                      </option>
+                      <option value="Other" className="bg-brand-dark text-white">
+                        Other
+                      </option>
+                    </select>
+                    <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-lilac/50" />
+                  </span>
+                </label>
 
-                  <label className="flex flex-col gap-1.5 text-xs font-semibold text-brand-lilac">
-                    Role
+                {role === "Other" && (
+                  <label className="flex flex-col gap-1.5 text-xs font-semibold text-brand-lilac animate-in fade-in duration-200">
+                    Specify your role
                     <input
                       type="text"
-                      value={role}
-                      onChange={(e) => setRole(e.target.value)}
-                      placeholder="Founder"
+                      required
+                      value={customRole}
+                      onChange={(e) => setCustomRole(e.target.value)}
+                      placeholder="e.g., Head of Growth"
                       className="w-full rounded-xl border border-brand-purple/10 bg-brand-low px-4 py-3 text-sm text-white outline-none transition-all placeholder:text-brand-lilac/40 focus:border-brand-pink focus:ring-1 focus:ring-brand-pink"
                     />
                   </label>
-                </div>
+                )}
 
                 <label className="flex flex-col gap-1.5 text-xs font-semibold text-brand-lilac">
-                  What do you want Closr to help with?
+                  What is the bottleneck you are facing when closing a deal?
                   <textarea
                     value={useCase}
                     onChange={(e) => setUseCase(e.target.value)}
-                    placeholder="Qualifying leads, building proposals, keeping follow-ups moving..."
+                    placeholder="e.g., Proposals take too long to create, leads ghosting after first call..."
                     rows={4}
                     className="w-full resize-none rounded-xl border border-brand-purple/10 bg-brand-low px-4 py-3 text-sm leading-6 text-white outline-none transition-all placeholder:text-brand-lilac/40 focus:border-brand-pink focus:ring-1 focus:ring-brand-pink"
                   />
@@ -225,7 +263,7 @@ export default function WaitlistPage() {
                     </>
                   ) : (
                     <>
-                      <span>Join waitlist</span>
+                      <span>Get Early Access</span>
                       <ArrowRight className="h-4 w-4" />
                     </>
                   )}

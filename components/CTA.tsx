@@ -27,7 +27,7 @@ export default function CTA() {
               href="/waitlist"
               className="w-full sm:w-auto h-12 px-8 rounded-full bg-brand-pink text-xs font-bold text-white flex items-center justify-center transition-all hover:bg-opacity-90 hover:scale-[1.02] shadow-[0_0_20px_rgba(255,6,109,0.3)] active:scale-[0.98]"
             >
-              Join Waitlist
+              Get Early Access
             </Link>
             <Link
               href="#demo"
