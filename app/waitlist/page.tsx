@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft,
   ArrowRight,
   CheckCircle2,
   ChevronDown,
@@ -78,23 +77,12 @@ export default function WaitlistPage() {
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(255,6,109,0.22),transparent_30%),radial-gradient(circle_at_85%_24%,rgba(250,95,4,0.16),transparent_28%),linear-gradient(135deg,#23062b_0%,#1d0225_45%,#2c0f33_100%)]" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-linear-to-t from-brand-dark to-transparent" />
 
-        <Link
-          href="/"
-          className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-brand-lilac transition-colors hover:bg-white/10 hover:text-white"
-        >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          <span>Back to home</span>
-        </Link>
-
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:pt-0">
           <div className="max-w-2xl">
-            <Link
-              href="/"
-              className="mb-8 inline-flex items-center gap-1.5 text-3xl font-bold tracking-tight text-white"
-            >
+            <div className="mb-8 inline-flex items-center gap-1.5 text-3xl font-bold tracking-tight text-white">
               <span>Closr</span>
               <span className="text-4xl font-extrabold leading-none text-brand-pink">.</span>
-            </Link>
+            </div>
 
             <div className="mb-5 inline-flex items-center gap-1.5 rounded-full border border-brand-pink/20 bg-brand-pink/10 px-3 py-1 text-xs font-semibold text-brand-pink">
               <span>Private beta waitlist</span>
@@ -134,13 +122,20 @@ export default function WaitlistPage() {
                 <p className="mt-3 max-w-sm text-sm leading-6 text-brand-lilac">
                   We saved your spot and will reach out when the next Closr beta invites open.
                 </p>
-                <Link
-                  href="/"
+                <button
+                  onClick={() => {
+                    setName("");
+                    setEmail("");
+                    setRole("");
+                    setCustomRole("");
+                    setUseCase("");
+                    setSuccess(false);
+                  }}
                   className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-brand-pink px-6 text-xs font-bold text-white transition-all hover:scale-[1.02] hover:bg-opacity-90 active:scale-[0.98]"
                 >
-                  <span>Return home</span>
+                  <span>Submit another email</span>
                   <ArrowRight className="h-4 w-4" />
-                </Link>
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
