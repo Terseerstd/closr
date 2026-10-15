@@ -61,10 +61,10 @@ export default function Header() {
             <Globe className="h-4.5 w-4.5" />
           </button>
           <Link
-            href="/waitlist"
+            href="/register"
             className="relative inline-flex h-10 items-center justify-center rounded-full bg-brand-pink px-6 text-xs font-semibold text-white transition-all hover:bg-opacity-90 hover:scale-[1.02] shadow-[0_0_15px_rgba(255,6,109,0.3)] active:scale-[0.98]"
           >
-            Get Early Access
+            Get Started
           </Link>
         </div>
 
@@ -120,11 +120,11 @@ export default function Header() {
             </Link>
             <div className="h-px bg-brand-purple/20 my-2" />
             <Link
-              href="/waitlist"
+              href="/register"
               onClick={() => setIsOpen(false)}
               className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-pink text-sm font-semibold text-white transition-colors hover:bg-opacity-90"
             >
-              <span>Get Early Access</span>
+              <span>Get Started</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
           </nav>

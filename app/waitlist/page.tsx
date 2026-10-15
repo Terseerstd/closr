@@ -140,7 +140,7 @@ export default function WaitlistPage() {
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div>
-                  <h2 className="text-2xl font-bold text-white">Get Early Access</h2>
+                  <h2 className="text-2xl font-bold text-white">Get Started</h2>
                   <p className="mt-2 text-sm text-brand-lilac/75">
                     Tell us where to send your invite.
                   </p>
@@ -258,7 +258,7 @@ export default function WaitlistPage() {
                     </>
                   ) : (
                     <>
-                      <span>Get Early Access</span>
+                      <span>Get Started</span>
                       <ArrowRight className="h-4 w-4" />
                     </>
                   )}

@@ -20,6 +20,7 @@ interface DashboardShellProps {
   children: React.ReactNode;
   username: string;
   userInitials: string;
+  activePath?: string;
   onLogout: () => Promise<void>;
 }
 
@@ -27,15 +28,16 @@ export default function DashboardShell({
   children,
   username,
   userInitials,
+  activePath = "/dashboard",
   onLogout
 }: DashboardShellProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const navigationItems = [
-    { name: "Dashboard", href: "/dashboard", icon: Layers, active: true },
-    { name: "Pipeline", href: "#", icon: Briefcase, active: false },
-    { name: "AI Insights", href: "#", icon: Sparkles, active: false },
-    { name: "Billing", href: "#", icon: DollarSign, active: false },
+    { name: "Dashboard", href: "/dashboard", icon: Layers },
+    { name: "AI Offer Builder", href: "/dashboard/offers", icon: Sparkles },
+    { name: "AI Proposals", href: "/dashboard/proposals", icon: DollarSign },
+    { name: "Deal Pipeline", href: "/dashboard/pipeline", icon: Briefcase },
   ];
 
   return (
@@ -79,18 +81,19 @@ export default function DashboardShell({
           <nav className="flex flex-col gap-1.5">
             {navigationItems.map((item, idx) => {
               const Icon = item.icon;
+              const isActive = activePath === item.href;
               return (
                 <Link
                   key={idx}
                   href={item.href}
                   onClick={() => setIsSidebarOpen(false)}
                   className={`flex items-center gap-3.5 px-4 py-3.5 rounded-xl text-sm font-bold transition-all ${
-                    item.active
+                    isActive
                       ? "bg-brand-high/50 text-white border-l-3 border-brand-pink"
                       : "text-brand-lilac/70 hover:text-white hover:bg-white/5 border-l-3 border-transparent"
                   }`}
                 >
-                  <Icon className={`h-4.5 w-4.5 ${item.active ? "text-brand-pink" : ""}`} />
+                  <Icon className={`h-4.5 w-4.5 ${isActive ? "text-brand-pink" : ""}`} />
                   <span>{item.name}</span>
                 </Link>
               );
@@ -147,17 +150,18 @@ export default function DashboardShell({
           <nav className="flex flex-col gap-1.5">
             {navigationItems.map((item, idx) => {
               const Icon = item.icon;
+              const isActive = activePath === item.href;
               return (
                 <Link
                   key={idx}
                   href={item.href}
                   className={`flex items-center gap-3.5 px-4 py-3.5 rounded-xl text-sm font-bold transition-all ${
-                    item.active
+                    isActive
                       ? "bg-brand-high/50 text-white border-l-3 border-brand-pink"
                       : "text-brand-lilac/70 hover:text-white hover:bg-white/5 border-l-3 border-transparent"
                   }`}
                 >
-                  <Icon className={`h-4.5 w-4.5 ${item.active ? "text-brand-pink" : ""}`} />
+                  <Icon className={`h-4.5 w-4.5 ${isActive ? "text-brand-pink" : ""}`} />
                   <span>{item.name}</span>
                 </Link>
               );
